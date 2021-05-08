@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 // Buffet components
 import { Header } from "@buffetjs/custom";
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
 `;
 
 const HomePage = () => {
+  const [rows, setRows] = useState([]);
   const headers = [
     {
       name: "Name",
@@ -29,29 +31,12 @@ const HomePage = () => {
     },
   ];
 
-  const rows = [
-    {
-      name: "landing-page",
-      description: "Code to the sales landing page",
-      html_url: "https://github.com/React-Avancado/landing-page",
-    },
-    {
-      name: "links-estudo",
-      description: "Links interessantes sobre tudo abordado no curso",
-      html_url: "https://github.com/React-Avancado/links-estudo",
-    },
-    {
-      name: "boilerplate",
-      description: "Boilerplate to use in our React Avançado course",
-      html_url: "https://github.com/React-Avancado/boilerplate",
-    },
-    {
-      name: "reactavancado-extesion-pack",
-      description:
-        "A collection of extension that we use at ReactAvancado.com.br course",
-      html_url: "https://github.com/React-Avancado/reactavancado-extesion-pack",
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get("https://api.github.com/users/React-avancado/repos")
+      .then((res) => setRows(res.data));
+  }, []);
+
   return (
     <Wrapper>
       <Header
