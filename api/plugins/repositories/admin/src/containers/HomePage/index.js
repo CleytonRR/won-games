@@ -1,19 +1,21 @@
-/*
- *
- * HomePage
- *
- */
+import React, { memo } from "react";
+import styled from "styled-components";
 
-import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
+// Buffet components
+import { Header } from "@buffetjs/custom";
+
+const Wrapper = styled.div`
+  padding: 18px 30px;
+`;
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>{pluginId}&apos;s HomePage</h1>
-      <p>Happy coding</p>
-    </div>
+    <Wrapper>
+      <Header
+        title={{ label: "React Avançado Repositories" }}
+        content="A list of our repositoriees in React Avançado couse."
+      />
+    </Wrapper>
   );
 };
 
