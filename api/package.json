@@ -9,7 +9,9 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jsdom": "^16.5.3"
+  },
   "dependencies": {
     "knex": "0.21.18",
     "pg": "8.5.1",
