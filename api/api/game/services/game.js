@@ -108,6 +108,7 @@ async function setImage({ image, game, field = "cover" }) {
 }
 
 async function createGames(products) {
+  console.log("Chamei aqui");
   await Promise.all(
     products.map(async (product) => {
       const item = await getByName(product.title, "game");
@@ -152,17 +153,19 @@ async function createGames(products) {
 module.exports = {
   populate: async (params) => {
     try {
-      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&page=1&sort=popularity&${qs.stringify(
+      const gogApiUrl = `https://www.gog.com/games/ajax/filtered?mediaType=game&${qs.stringify(
         params
       )}`;
+      console.log(gogApiUrl);
       const {
         data: { products },
       } = await axios.get(gogApiUrl);
 
-      await createManyToManyData(products);
+      // await createManyToManyData(products.slice(10, ));
       await createGames(products);
     } catch (error) {
-      console.log("populate", Exception(error));
+      console.log("populate");
+      console.log(error);
     }
   },
 };
