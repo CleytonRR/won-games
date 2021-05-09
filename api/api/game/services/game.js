@@ -69,7 +69,7 @@ async function createManyToManyData(products) {
 }
 
 async function setImage({ image, game, field = "cover" }) {
-  const url = `https://${image}_bg_crop_1650x655.jpg`;
+  const url = `https:${image}_bg_crop_1680x655.jpg`;
   const { data } = await axios.get(url, { responseType: "arraybuffer" });
 
   const buffer = Buffer.from(data, "base64");
@@ -86,7 +86,7 @@ async function setImage({ image, game, field = "cover" }) {
 
   await axios({
     method: "POST",
-    url: `https://${strapi.config.host}:${strapi.config.port}/upload`,
+    url: `http://${strapi.config.host}:${strapi.config.port}/upload`,
     data: formData,
     headers: {
       "Content-type": `multipart/form-data; boundary=${formData._boundary}`,
@@ -121,6 +121,8 @@ async function createGames(products) {
           ...(await getGameInfo(product.slug)),
         });
 
+        await setImage({ image: product.image, game });
+
         return game;
       }
     })
@@ -135,7 +137,7 @@ module.exports = {
       data: { products },
     } = await axios.get(gogApiUrl);
 
-    await createManyToManyData([products[2], products[3]]);
-    await createGames([products[0], products[1]]);
+    await createManyToManyData([products[4]]);
+    await createGames([products[5]]);
   },
 };
