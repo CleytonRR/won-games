@@ -68,6 +68,32 @@ async function createManyToManyData(products) {
   ]);
 }
 
+async function setImage({ image, game, field = "cover" }) {
+  const url = `https://${image}_bg_crop_1650x655.jpg`;
+  const { data } = await axios.get(url, { responseType: "arraybuffer" });
+
+  const buffer = Buffer.from(data, "base64");
+
+  const FormData = require("form-data");
+  const formData = new FormData();
+
+  formData.append("refId", game.id);
+  formData.append("ref", "game");
+  formData.append("field", field);
+  formData.append("files", buffer, { filename: `${game.slug}.jpg` });
+
+  console.info(`Uploading ${field} image: ${game.slug}.jpg`);
+
+  await axios({
+    method: "POST",
+    url: `https://${strapi.config.host}:${strapi.config.port}/upload`,
+    data: formData,
+    headers: {
+      "Content-type": `multipart/form-data; boundary=${formData._boundary}`,
+    },
+  });
+}
+
 async function createGames(products) {
   await Promise.all(
     products.map(async (product) => {
