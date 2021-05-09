@@ -1,12 +1,18 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/helpers'
 
 import Logo from './index'
 
 describe('<Logo />', () => {
-  it('Should render the heading', () => {
-    const { container } = render(<Logo />)
-    expect(screen.getByRole('heading', { name: /Logo/i })).toBeInTheDocument()
+  it('Should render a white label by default ', () => {
+    // Render o component 'render'
+    // Selecionar o elemento a ser testado 'screen' (queries) = getByLabel
+    //Expect - assertion - asserção - comparação - análise( espero que renderize a logo branca)
+    // Enzime faz shallow - ou seja - não renderiza de fato
 
-    expect(container.firstChild).toMatchSnapshot()
+    renderWithTheme(<Logo />)
+    expect(screen.getByLabelText(/Won Games/i).parentElement).toHaveStyle({
+      color: '#FAFAFA'
+    })
   })
 })
