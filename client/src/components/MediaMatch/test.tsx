@@ -33,4 +33,10 @@ describe('<MediaMatch />', () => {
       media: '(min-width: 768px)'
     })
   })
+
+  it('Should show or hide based on the media passed', () => {
+    expect(mobileHeading.parentElement).toHaveStyleRule('display', 'block', {
+      media: '(max-width: 768px)'
+    })
+  })
 })
