@@ -10,7 +10,7 @@ const Menu = () => (
     <S.IconWrapper>
       <MenuIcon aria-label="Open Menu" />
     </S.IconWrapper>
-    <S.LogoWrapper aria-label="Logo Won Games">
+    <S.LogoWrapper>
       <Logo hideOnMobile />
     </S.LogoWrapper>
     <S.MenuGroup>

@@ -10,6 +10,6 @@ describe('<Menu />', () => {
     expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/search/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/open shopping cart/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/logo won games/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/won games/i)).toBeInTheDocument()
   })
 })
