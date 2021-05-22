@@ -5,12 +5,8 @@ import Footer from './index'
 
 describe('<Footer />', () => {
   it('Should render 4 columns topics', () => {
-    // Contact
-    // follow us
-    // links
-    // location
+    const { container } = renderWithTheme(<Footer />)
 
-    renderWithTheme(<Footer />)
     expect(
       screen.getByRole('heading', { name: /contact/i })
     ).toBeInTheDocument()
@@ -24,5 +20,7 @@ describe('<Footer />', () => {
     expect(
       screen.getByRole('heading', { name: /Location/i })
     ).toBeInTheDocument()
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 })
