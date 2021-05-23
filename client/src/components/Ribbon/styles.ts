@@ -19,7 +19,7 @@ const wrapperModifiers = {
 
 export const Wrapper = styled.div<Omit<RibbonProps, 'children'>>`
   ${({ theme, color, size }) => css`
-    ${!!color && wrapperModifiers[size](theme)}
+    ${!!color && wrapperModifiers[size!](theme)}
     ${!!color && wrapperModifiers.color(theme, color)}
   `}
 `
