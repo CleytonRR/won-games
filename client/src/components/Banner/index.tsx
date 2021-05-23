@@ -3,6 +3,7 @@ import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon'
 import * as S from './styles'
 
 type RibbonPropsBanner = {
+  ribbon?: React.ReactNode
   ribbonSize?: RibbonSizes
   ribbonColor?: RibbonColors
 }
@@ -13,7 +14,6 @@ export type BannerProps = {
   subtitle: string
   buttonLabel: string
   buttonLink: string
-  ribbon?: string
 } & RibbonPropsBanner
 
 const Banner = ({
@@ -23,10 +23,16 @@ const Banner = ({
   buttonLabel,
   buttonLink,
   ribbon,
-  ribbonSize,
-  ribbonColor
+  ribbonSize = 'normal',
+  ribbonColor = 'primary'
 }: BannerProps) => (
   <S.Wrapper>
+    {!!ribbon && (
+      <Ribbon size={ribbonSize} color={ribbonColor}>
+        {ribbon}
+      </Ribbon>
+    )}
+
     <S.Image src={img} role="img" aria-label={title} />
 
     <S.Caption>
@@ -36,11 +42,6 @@ const Banner = ({
         {buttonLabel}
       </Button>
     </S.Caption>
-    {!!ribbon && (
-      <Ribbon size={ribbonSize} color={ribbonColor}>
-        {ribbon}
-      </Ribbon>
-    )}
   </S.Wrapper>
 )
 
