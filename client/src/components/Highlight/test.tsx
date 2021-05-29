@@ -1,14 +1,22 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/helpers'
 
 import Highlight from './index'
 
-describe('<Highlight />', () => {
-  it('Should render the heading', () => {
-    const { container } = render(<Highlight />)
-    expect(
-      screen.getByRole('heading', { name: /Highlight/i })
-    ).toBeInTheDocument()
+const props = {
+  title: 'Heading 1',
+  subtitle: 'Heading 2'
+}
 
-    expect(container.firstChild).toMatchSnapshot()
+describe('<Highlight />', () => {
+  it('Should render headings and button', () => {
+    renderWithTheme(<Highlight {...props} />)
+
+    expect(
+      screen.getByRole('heading', { name: /Heading 1/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /Heading 2/i })
+    ).toBeInTheDocument()
   })
 })
