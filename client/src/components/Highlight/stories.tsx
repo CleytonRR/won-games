@@ -14,3 +14,11 @@ export default {
 } as Meta
 
 export const Basic: Story<HighLightProps> = (args) => <Highlight {...args} />
+
+export const WithFloatImage: Story<HighLightProps> = (args) => (
+  <Highlight {...args} />
+)
+
+WithFloatImage.args = {
+  floatImage: '/img/red-dead-float.png'
+}
