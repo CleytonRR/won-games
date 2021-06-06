@@ -32,11 +32,13 @@ describe('<GameCard />', () => {
 
     renderWithTheme(<GameCard {...props} />)
 
-    expect(screen.getByText(props.price)).toHaveStyle({
+    const price = screen.getByText(props.price)
+
+    expect(price).toHaveStyle({
       backgroundColor: '#3CD3C1'
     })
 
-    expect(screen.getByText(props.price)).not.toHaveStyle({
+    expect(price).not.toHaveStyle({
       textDecoration: 'line-through'
     })
   })
